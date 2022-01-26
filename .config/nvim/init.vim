@@ -1,6 +1,8 @@
 set shell=/bin/bash
 
+" =============================================================================
 " GENERAL CONFIGURATION
+" =============================================================================
 " enable loading plugins depending on file extension
 syntax enable
 filetype plugin indent on
@@ -9,8 +11,11 @@ set encoding=utf-8
 set number
 set tabstop=4
 set cindent
+set list
 
+" =============================================================================
 " PLUGINS
+" =============================================================================
 set nocompatible
 filetype off
 call plug#begin()
@@ -27,13 +32,32 @@ Plug 'rust-lang/rust.vim'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 call plug#end()
 	
+" =============================================================================
 " LUA Config
+" =============================================================================
 lua require('nvim-cmp')
 
+" =============================================================================
 " HOTKEYS
+" =============================================================================
 " fzf plugin
 " #searching for files
 map <C-p> :Files<CR>
+" -----------------------------------------------------------------------------
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'

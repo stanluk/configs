@@ -34,3 +34,5 @@ backup ~/.config/nvim/lua/nvim-cmp.lua
 backup ~/.config/fish/config.fish
 backup ~/.config/alacritty/alacritty.yml
 backup ~/.tmux.conf
+backup ~/.vsnip/c.json
+backup ~/.vsnip/cpp.json
