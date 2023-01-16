@@ -153,7 +153,7 @@
         "description": "Code snippet for interface (Visual C++)"
     },
     "namespace": {
-        "prefix": "namespace",
+        "prefix": "ns",
         "body": [
             "namespace ${MyNamespace}",
             "{",
@@ -270,5 +270,15 @@
             "}"
         ],
         "description": "Code snippet for main function"
+    },
+    "once": {
+        "prefix": "once",
+        "body": [
+            "#ifndef ${TM_FILENAME/(.*)/${1:/upcase}/}",
+            "#define ${TM_FILENAME/(.*)/${1:/upcase}/}",
+            "$0",
+            "#endif"
+        ],
+        "description": "Inserts include guard"
     }
 }
